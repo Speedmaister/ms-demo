@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>RADO</Machine>
+    <WindowsUser>Rado_</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <RegisteredManifestChecksum>D778C378FC70222B791AD3DFE0C8E54B1A91A18A7B7715DB0BA6137202FCB212</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>Microsoft.SDKSamples.ControlChannelStreamSocket.CS_1.0.0.0_neutral__8wekyb3d8bbwe</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>Microsoft.SDKSamples.ControlChannelStreamSocket.CS_8wekyb3d8bbwe!ControlChannelTriggerWithStreamSocket.App</RegisteredUserModeAppID>
+    <RegisteredPackageID>Microsoft.SDKSamples.ControlChannelStreamSocket.CS</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-09-24T11:41:41.697</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\bin\Debug\ControlChannelTriggerWithStreamSocket.exe">
+      <PackagePath>ControlChannelTriggerWithStreamSocket.exe</PackagePath>
+      <Modified>2013-09-24T11:41:41.294</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\bin\Debug\ControlChannelTriggerWithStreamSocket.pdb">
+      <PackagePath>ControlChannelTriggerWithStreamSocket.pdb</PackagePath>
+      <Modified>2013-09-24T11:41:41.285</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\Background\bin\Debug\Background.pdb">
+      <PackagePath>Background.pdb</PackagePath>
+      <Modified>2013-09-24T09:49:15.314</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\StreamSocketTransportHelper\bin\Debug\StreamSocketTransportHelper.pdb">
+      <PackagePath>StreamSocketTransportHelper.pdb</PackagePath>
+      <Modified>2013-09-24T09:49:13.618</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\Background\bin\Debug\Background.winmd">
+      <PackagePath>Background.winmd</PackagePath>
+      <Modified>2013-09-24T09:49:15.315</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\StreamSocketTransportHelper\bin\Debug\StreamSocketTransportHelper.dll">
+      <PackagePath>StreamSocketTransportHelper.dll</PackagePath>
+      <Modified>2013-09-24T09:49:13.629</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\Images\badgelogo-sdk.png">
+      <PackagePath>Images\badgelogo-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\Images\microsoft-sdk.png">
+      <PackagePath>Images\microsoft-sdk.png</PackagePath>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\Images\placeholder-sdk.png">
+      <PackagePath>Images\placeholder-sdk.png</PackagePath>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\Images\smallTile-sdk.png">
+      <PackagePath>Images\smallTile-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\Images\splash-sdk.png">
+      <PackagePath>Images\splash-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\Images\squareTile-sdk.png">
+      <PackagePath>Images\squareTile-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\Images\storeLogo-sdk.png">
+      <PackagePath>Images\storeLogo-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\Images\tile-sdk.png">
+      <PackagePath>Images\tile-sdk.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\Images\windows-sdk.png">
+      <PackagePath>Images\windows-sdk.png</PackagePath>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\bin\Debug\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\bin\Debug\ScenarioList.xaml">
+      <PackagePath>ScenarioList.xaml</PackagePath>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\bin\Debug\ScenarioOutput1.xaml">
+      <PackagePath>ScenarioOutput1.xaml</PackagePath>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\bin\Debug\ScenarioInput1.xaml">
+      <PackagePath>ScenarioInput1.xaml</PackagePath>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\bin\Debug\MainPage.xaml">
+      <PackagePath>MainPage.xaml</PackagePath>
+      <Modified>2013-06-27T21:07:53.070</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample %28Windows 8%29\C#\ControlChannelTriggerWithStreamSocket\bin\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2013-09-24T11:41:41.613</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
