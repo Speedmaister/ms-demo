@@ -1,0 +1,4 @@
+C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample (Windows 8)\C#\Background\Background.csproj;neutral
+C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample (Windows 8)\C#\ControlChannelTriggerWithStreamSocket\ControlChannelTriggerWithStreamSocket.csproj;neutral
+C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample (Windows 8)\C#\StreamSocketTransportHelper\StreamSocketTransportHelper.csproj;neutral
+C:\Users\Rado_\Desktop\ControlChannelTrigger StreamSocket sample (Windows 8)\C#\StreamSocketTransportHelper\StreamSocketTransportHelper.csproj;neutral
