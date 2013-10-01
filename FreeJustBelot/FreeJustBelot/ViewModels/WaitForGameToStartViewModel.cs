@@ -19,7 +19,8 @@ namespace FreeJustBelot.ViewModels
 
         public WaitForGameToStartViewModel(string gameName)
         {
-            connection = new HubConnection(DataPersister.GetBaseUrl()+"signalr");
+            connection = new HubConnection(DataPersister.GetBaseUrl() + "signalr", useDefaultUrl: false);
+            //connection = new HubConnection(DataPersister.GetBaseUrl() + "signalr");
             hub = connection.CreateHubProxy("JustBelotWaitRoom");
             hub.On("joinGame", data =>
                 {
