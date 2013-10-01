@@ -70,8 +70,6 @@ E:\ms-demo\FreeJustBelot\FreeJustBelot\obj\Debug\FreeJustBelot.exe
 E:\ms-demo\FreeJustBelot\FreeJustBelot\obj\Debug\FreeJustBelot.pdb
 E:\ms-demo\FreeJustBelot\FreeJustBelot\obj\Debug\Microsoft.AspNet.SignalR.Client\en-US\Microsoft.AspNet.SignalR.Client.Resources.resw
 E:\ms-demo\FreeJustBelot\FreeJustBelot\obj\Debug\FreeJustBelot.csproj.GenerateResource.Cache
-E:\ms-demo\FreeJustBelot\FreeJustBelot\obj\Debug\Microsoft.AspNet.SignalR.Client\priconfig.xml.intermediate
-E:\ms-demo\FreeJustBelot\FreeJustBelot\obj\Debug\Microsoft.AspNet.SignalR.Client\Resources.resfiles.intermediate
 E:\ms-demo\FreeJustBelot\FreeJustBelot\obj\Debug\Microsoft.AspNet.SignalR.Client.pri
 E:\ms-demo\FreeJustBelot\FreeJustBelot\obj\Debug\Microsoft.AspNet.SignalR.Client\LanguageQualifiers.txt
 E:\ms-demo\FreeJustBelot\FreeJustBelot\obj\Debug\priconfig.xml.intermediate
