@@ -24,8 +24,7 @@ namespace FreeJustBelot.ViewModels
             hub = connection.CreateHubProxy("JustBelotWaitRoom");
             hub.On("joinGame", data =>
                 {
-                    var roomModel = data as RoomModel;
-                    this.Players = roomModel.Players;
+                    this.Players = new List<string>(data.Players);
                     this.OnPropertyChanged("Players");
                 });
 
