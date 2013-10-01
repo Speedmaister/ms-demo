@@ -9,7 +9,7 @@ namespace FreeJustBelot.Data
 {
     public class DataPersister
     {
-        private const string BaseUrl = "http://freejustbelot.apphb.com/";
+        private const string BaseUrl = "http://freejustbelot.apphb.com/api/";
         private static HttpRequester requester = new HttpRequester(BaseUrl);
 
         public static string GetBaseUrl()
