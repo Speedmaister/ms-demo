@@ -8,11 +8,11 @@ namespace FreeJustBelot.Models
 {
     public class RoomModel
     {
-        public List<string> Players { get; set; }
+        public string[] Players { get; set; }
 
         public RoomModel()
         {
-            this.Players = new List<string>();
+            this.Players = new string[4];
         }
     }
 }
