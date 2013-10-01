@@ -98,6 +98,7 @@ namespace FreeJustBelot.ViewModels
             if (response.Message == "Created.")
             {
                 this.navigation.Navigate(Views.WaitRoom);
+                this.WaitVM = new WaitForGameToStartViewModel(gameName);
                 return;
             }
         }
