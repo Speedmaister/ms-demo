@@ -32,7 +32,7 @@ namespace FreeJustBelot.ViewModels
         public void SetAndStartConnection(string gameName)
         {
             this.gameName = gameName;
-            connection = new HubConnection("http://freejustbelot.apphb.com/");
+            connection = new HubConnection("http://localhost:3490/");
             //connection = new HubConnection(DataPersister.GetBaseUrl() + "signalr");
             hub = connection.CreateHubProxy("JustBelotWaitRoom");
             hub.On("PlayerJoinedRoom", data =>
@@ -76,7 +76,7 @@ namespace FreeJustBelot.ViewModels
                 throw new InvalidOperationException("Something went wrong.");
             }
 
-            await hub.Invoke("LeaveRoom", this.gameName);
+            await hub.Invoke("LeaveRoom", this.gameName,LoginViewModel.nickname);
 
             this.connection.Stop();
             this.hub = null;
