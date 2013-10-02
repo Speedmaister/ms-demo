@@ -16,20 +16,19 @@ namespace FreeJustBelot.ViewModels
 {
     public class WaitForGameToStartViewModel : BindableBase
     {
-        private List<string> Players { get; set; }
         public List<string> TeamA { get; set; }
         public List<string> TeamB { get; set; }
+        private List<string> Players { get; set; }
+
         private IHubProxy hub;
         private HubConnection connection;
         public event EventHandler updatePlayersList;
 
         public WaitForGameToStartViewModel()
         {
-            this.TeamA = new List<string>();
-            this.TeamB = new List<string>();
         }
 
-        public async void SetAndStartConnection(string gameName)
+        public void SetAndStartConnection(string gameName)
         {
             connection = new HubConnection("http://freejustbelot.apphb.com/");
             //connection = new HubConnection(DataPersister.GetBaseUrl() + "signalr");
@@ -38,8 +37,9 @@ namespace FreeJustBelot.ViewModels
             {
                 RoomModel roomModel = JsonConvert.DeserializeObject<RoomModel>(data.ToString());
                 this.Players = roomModel.Players;
+                this.TeamA = new List<string>() { this.Players[0], this.Players[2] };
+                this.TeamB = new List<string>() { this.Players[1], this.Players[3] };
                 this.updatePlayersList(this, null);
-               // App.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal,() => this.OnPropertyChanged("Players"));
             });
 
             this.ConnectToHub(LoginViewModel.sessionKey, gameName);
@@ -47,14 +47,8 @@ namespace FreeJustBelot.ViewModels
 
         public void RefreshList()
         {
-            this.TeamA.Clear();
-            this.TeamB.Clear();
-            this.TeamA.Add(this.Players[0]);
-            this.TeamA.Add(this.Players[2]);
-            this.TeamB.Add(this.Players[1]);
-            this.TeamB.Add(this.Players[3]);
-            this.OnPropertyChanged("TeamA");
             this.OnPropertyChanged("TeamB");
+            this.OnPropertyChanged("TeamA");
         }
 
         public async void ConnectToHub(string sessionKey, string gameName)
