@@ -26,15 +26,25 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Waiting Room" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Players}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="{Binding}"/>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        
-        <Button Click="Button_Click">Click</Button>
+        <StackPanel Grid.Row="1">
+            <TextBlock FontSize="30">Team A</TextBlock>
+            <ListBox ItemsSource="{Binding TeamA}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <TextBlock FontSize="30">Team B</TextBlock>
+            <ListBox ItemsSource="{Binding TeamB}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
 
