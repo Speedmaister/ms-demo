@@ -16,13 +16,17 @@ namespace FreeJustBelot.ViewModels
 {
     public class WaitForGameToStartViewModel : BindableBase
     {
-        public IEnumerable<string> Players { get; set; }
+        private IEnumerable<string> Players { get; set; }
+        public List<string> TeamA { get; set; }
+        public List<string> TeamB { get; set; }
         private IHubProxy hub;
         private HubConnection connection;
         public event EventHandler updatePlayersList;
 
         public WaitForGameToStartViewModel()
         {
+            this.TeamA = new List<string>();
+            this.TeamB = new List<string>();
         }
 
         public async void SetAndStartConnection(string gameName)
@@ -43,7 +47,14 @@ namespace FreeJustBelot.ViewModels
 
         public void RefreshList()
         {
-            this.OnPropertyChanged("Players");
+            this.TeamA.Clear();
+            this.TeamB.Clear();
+            this.TeamA.Add(this.Players.ElementAt(0));
+            this.TeamA.Add(this.Players.ElementAt(2));
+            this.TeamB.Add(this.Players.ElementAt(1));
+            this.TeamB.Add(this.Players.ElementAt(3));
+            this.OnPropertyChanged("TeamA");
+            this.OnPropertyChanged("TeamB");
         }
 
         public async void ConnectToHub(string sessionKey, string gameName)
