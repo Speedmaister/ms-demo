@@ -29,6 +29,7 @@ namespace FreeJustBelot.ViewModels
             this.navigation = navigation;
             this.NewGame = new CreateGameModel();
             this.LogOutCommand = new DelegateCommand<object>(this.HandleLogoutCommand);
+            this.WaitVM = new WaitForGameToStartViewModel();
         }
 
         public ICommand JoinGame
@@ -80,7 +81,7 @@ namespace FreeJustBelot.ViewModels
             if (response.Message == "Joined.")
             {
                 this.navigation.Navigate(Views.WaitRoom);
-                this.WaitVM = new WaitForGameToStartViewModel(model.GameName);
+                this.WaitVM.SetAndStartConnection(model.GameName);
             }
         }
 
@@ -98,7 +99,7 @@ namespace FreeJustBelot.ViewModels
             if (response.Message == "Created.")
             {
                 this.navigation.Navigate(Views.WaitRoom);
-                this.WaitVM = new WaitForGameToStartViewModel(gameName);
+                this.WaitVM.SetAndStartConnection(gameName);
                 return;
             }
         }
