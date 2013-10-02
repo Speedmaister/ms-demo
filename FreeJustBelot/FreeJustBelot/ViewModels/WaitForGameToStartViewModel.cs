@@ -32,7 +32,7 @@ namespace FreeJustBelot.ViewModels
         public void SetAndStartConnection(string gameName)
         {
             this.gameName = gameName;
-            connection = new HubConnection("http://localhost:3490/");
+            connection = new HubConnection("http://freejustbelot.apphb.com/");
             //connection = new HubConnection(DataPersister.GetBaseUrl() + "signalr");
             hub = connection.CreateHubProxy("JustBelotWaitRoom");
             hub.On("PlayerJoinedRoom", data =>
