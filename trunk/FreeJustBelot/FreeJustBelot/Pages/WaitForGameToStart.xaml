@@ -27,23 +27,28 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Height="400" Name="panel">
+            <StackPanel.Resources>
+                <Style TargetType="ListView">
+                    <Setter Property="SelectionMode" Value="None"/>
+                </Style>
+            </StackPanel.Resources>
             <TextBlock FontSize="30">Team A</TextBlock>
-            <ListBox Height="150" ItemsSource="{Binding TeamA}" Name="ItemsPanel">
-                <ListBox.ItemTemplate>
+            <ListView Height="150" ItemsSource="{Binding TeamA}" Name="ItemsPanel">
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"/>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ListView.ItemTemplate>
+            </ListView>
 
             <TextBlock FontSize="30">Team B</TextBlock>
-            <ListBox Height="150" ItemsSource="{Binding TeamB}">
-                <ListBox.ItemTemplate>
+            <ListView Height="150" ItemsSource="{Binding TeamB}">
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"/>
                     </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>

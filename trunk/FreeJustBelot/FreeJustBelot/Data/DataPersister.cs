@@ -103,5 +103,11 @@ namespace FreeJustBelot.Data
             string serviceUrl = "games/join?sessionKey=" + sessionKey;
             return await requester.PostAsync<MessageModel>(serviceUrl, gameTobeJoined);
         }
+
+        public async static Task<MessageModel> LeaveGameAsync(string gameName, string sessionKey)
+        {
+            string serviceUrl = "games/leave?sessionKey=" + sessionKey + "&gameName=" + gameName;
+            return await requester.CreateGetRequestAsync<MessageModel>(serviceUrl);
+        }
     }
 }
