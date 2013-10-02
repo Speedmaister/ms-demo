@@ -26,7 +26,7 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Waiting Room" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-        <StackPanel Grid.Row="1">
+        <StackPanel Grid.Row="1" Height="300">
             <TextBlock FontSize="30">Team A</TextBlock>
             <ListBox ItemsSource="{Binding TeamA}">
                 <ListBox.ItemTemplate>
