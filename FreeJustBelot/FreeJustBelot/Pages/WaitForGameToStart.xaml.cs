@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreeJustBelot.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,9 +22,21 @@ namespace FreeJustBelot.Pages
     /// </summary>
     public sealed partial class WaitForGameToStart : FreeJustBelot.Common.LayoutAwarePage
     {
+
         public WaitForGameToStart()
         {
             this.InitializeComponent();
+            var datacontext = this.DataContext as WaitForGameToStartViewModel;
+            datacontext.updatePlayersList += this.UpdateList;
+        }
+
+
+        private void UpdateList(object sender, EventArgs e)
+        {
+            Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () =>{
+                var datacontext = this.DataContext as WaitForGameToStartViewModel;
+                datacontext.RefreshList();
+            });
         }
 
         /// <summary>
@@ -47,6 +60,12 @@ namespace FreeJustBelot.Pages
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var x = this.DataContext;
+            var y = x as WaitForGameToStartViewModel;
         }
     }
 }

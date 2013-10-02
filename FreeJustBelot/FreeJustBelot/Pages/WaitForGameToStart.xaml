@@ -26,7 +26,15 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Waiting Room" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-        <ItemsControl ItemsSource="{Binding Players}" DisplayMemberPath="{Binding}"></ItemsControl>
+        <ListBox Grid.Row="1" ItemsSource="{Binding Players}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <Button Click="Button_Click">Click</Button>
 
         <VisualStateManager.VisualStateGroups>
 
