@@ -21,6 +21,8 @@ namespace FreeJustBelot.Services
                     return typeof(HomePage);
                 case Views.WaitRoom:
                     return typeof(WaitForGameToStart);
+                case Views.Game:
+                    return typeof(GamePage);
                 default:
                     break;
             }

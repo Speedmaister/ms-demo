@@ -11,26 +11,67 @@ using FreeJustBelot.Common;
 using Newtonsoft.Json;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using System.Windows.Input;
+using FreeJustBelot.Commands;
+using FreeJustBelot.Services;
 
 namespace FreeJustBelot.ViewModels
 {
     public class WaitForGameToStartViewModel : BindableBase
     {
+        private bool isGameReadyToStart;
         public List<string> TeamA { get; set; }
         public List<string> TeamB { get; set; }
         private List<string> Players { get; set; }
+        public bool IsVisible { get; set; }
+        private ICommand startGameCommand;
+        public ICommand StartGameCommand
+        {
+            get
+            {
+                if (this.startGameCommand == null)
+                {
+                    this.startGameCommand = new DelegateCommand<object>(this.HandleStartGameCommand);
+                }
+
+                return this.startGameCommand;
+            }
+        }
+
+        private void HandleStartGameCommand(object parameter)
+        {
+            this.navigation.Navigate(Views.Game);
+        }
+
         private string gameName;
 
         private IHubProxy hub;
         private HubConnection connection;
         public event EventHandler updatePlayersList;
+        private INavigationService navigation;
 
-        public WaitForGameToStartViewModel()
+        public bool IsGameReadyToStart
         {
+            get
+            {
+                return this.isGameReadyToStart;
+            }
+            set
+            {
+                this.isGameReadyToStart = value;
+                this.OnPropertyChanged("IsGameReadyToStart");
+            }
+        }
+
+        public WaitForGameToStartViewModel(INavigationService navigation)
+        {
+            this.navigation = navigation;
+            this.IsGameReadyToStart = false;
         }
 
         public void SetAndStartConnection(string gameName)
         {
+            this.OnPropertyChanged("IsVisible");
             this.gameName = gameName;
             connection = new HubConnection("http://freejustbelot.apphb.com/");
             //connection = new HubConnection(DataPersister.GetBaseUrl() + "signalr");
@@ -60,6 +101,10 @@ namespace FreeJustBelot.ViewModels
         {
             this.OnPropertyChanged("TeamB");
             this.OnPropertyChanged("TeamA");
+            if (this.Players.Count == 4)
+            {
+                this.IsGameReadyToStart = true;
+            }
         }
 
         public async void ConnectToHub(string sessionKey, string gameName)
