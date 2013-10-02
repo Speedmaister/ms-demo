@@ -65,7 +65,7 @@ namespace FreeJustBelot.ViewModels
         public async void ConnectToHub(string sessionKey, string gameName)
         {
             await connection.Start();
-            await hub.Invoke("JoinRoom", sessionKey, gameName);
+            await hub.Invoke("JoinRoom", gameName);
         }
 
         public async Task<bool> LeaveGame()
