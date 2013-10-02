@@ -26,13 +26,13 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Waiting Room" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-        <ListBox Grid.Row="1" ItemsSource="{Binding Players}">
-            <ListBox.ItemTemplate>
+        <ItemsControl Grid.Row="1" ItemsSource="{Binding Players}">
+            <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding}"/>
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         
         <Button Click="Button_Click">Click</Button>
 
