@@ -122,6 +122,9 @@
     <Compile Include="Models\MessageModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
     <Compile Include="Models\UserModel.cs" />
+    <Compile Include="Pages\GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
@@ -150,8 +153,40 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Club_10.svg" />
+    <Content Include="Assets\Club_7.svg" />
+    <Content Include="Assets\Club_8.svg" />
+    <Content Include="Assets\Club_9.svg" />
+    <Content Include="Assets\Club_A.svg" />
+    <Content Include="Assets\Club_J.svg" />
+    <Content Include="Assets\Club_K.svg" />
+    <Content Include="Assets\Club_Q.svg" />
+    <Content Include="Assets\Diamond_10.svg" />
+    <Content Include="Assets\Diamond_7.svg" />
+    <Content Include="Assets\Diamond_8.svg" />
+    <Content Include="Assets\Diamond_9.svg" />
+    <Content Include="Assets\Diamond_A.svg" />
+    <Content Include="Assets\Diamond_J.svg" />
+    <Content Include="Assets\Diamond_K.svg" />
+    <Content Include="Assets\Diamond_Q.svg" />
+    <Content Include="Assets\Heart_10.svg" />
+    <Content Include="Assets\Heart_7.svg" />
+    <Content Include="Assets\Heart_8.svg" />
+    <Content Include="Assets\Heart_9.svg" />
+    <Content Include="Assets\Heart_A.svg" />
+    <Content Include="Assets\Heart_J.svg" />
+    <Content Include="Assets\Heart_K.svg" />
+    <Content Include="Assets\Heart_Q.svg" />
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
+    <Content Include="Assets\Spade_10.svg" />
+    <Content Include="Assets\Spade_7.svg" />
+    <Content Include="Assets\Spade_8.svg" />
+    <Content Include="Assets\Spade_9.svg" />
+    <Content Include="Assets\Spade_A.svg" />
+    <Content Include="Assets\Spade_J.svg" />
+    <Content Include="Assets\Spade_K.svg" />
+    <Content Include="Assets\Spade_Q.svg" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Common\ReadMe.txt" />
@@ -165,6 +200,10 @@
     <Page Include="Common\StandardStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\GamePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\HomePage.xaml">
       <SubType>Designer</SubType>

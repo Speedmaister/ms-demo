@@ -10,6 +10,7 @@ namespace FreeJustBelot.Services
     {
         LoginRegister,
         Home,
-        WaitRoom
+        WaitRoom,
+        Game
     }
 }
