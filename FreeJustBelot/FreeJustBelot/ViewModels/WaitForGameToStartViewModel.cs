@@ -16,7 +16,7 @@ namespace FreeJustBelot.ViewModels
 {
     public class WaitForGameToStartViewModel : BindableBase
     {
-        private IEnumerable<string> Players { get; set; }
+        private List<string> Players { get; set; }
         public List<string> TeamA { get; set; }
         public List<string> TeamB { get; set; }
         private IHubProxy hub;
@@ -49,10 +49,10 @@ namespace FreeJustBelot.ViewModels
         {
             this.TeamA.Clear();
             this.TeamB.Clear();
-            this.TeamA.Add(this.Players.ElementAt(0));
-            this.TeamA.Add(this.Players.ElementAt(2));
-            this.TeamB.Add(this.Players.ElementAt(1));
-            this.TeamB.Add(this.Players.ElementAt(3));
+            this.TeamA.Add(this.Players[0]);
+            this.TeamA.Add(this.Players[2]);
+            this.TeamB.Add(this.Players[1]);
+            this.TeamB.Add(this.Players[3]);
             this.OnPropertyChanged("TeamA");
             this.OnPropertyChanged("TeamB");
         }
