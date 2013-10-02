@@ -61,11 +61,5 @@ namespace FreeJustBelot.Pages
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var x = this.DataContext;
-            var y = x as WaitForGameToStartViewModel;
-        }
     }
 }
