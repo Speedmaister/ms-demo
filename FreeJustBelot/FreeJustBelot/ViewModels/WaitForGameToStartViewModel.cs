@@ -19,6 +19,7 @@ namespace FreeJustBelot.ViewModels
         public List<string> TeamA { get; set; }
         public List<string> TeamB { get; set; }
         private List<string> Players { get; set; }
+        private string gameName;
 
         private IHubProxy hub;
         private HubConnection connection;
@@ -30,15 +31,25 @@ namespace FreeJustBelot.ViewModels
 
         public void SetAndStartConnection(string gameName)
         {
+            this.gameName = gameName;
             connection = new HubConnection("http://freejustbelot.apphb.com/");
             //connection = new HubConnection(DataPersister.GetBaseUrl() + "signalr");
             hub = connection.CreateHubProxy("JustBelotWaitRoom");
-            hub.On("joinGame", data =>
+            hub.On("PlayerJoinedRoom", data =>
             {
                 RoomModel roomModel = JsonConvert.DeserializeObject<RoomModel>(data.ToString());
                 this.Players = roomModel.Players;
                 this.TeamA = new List<string>() { this.Players[0], this.Players[2] };
                 this.TeamB = new List<string>() { this.Players[1], this.Players[3] };
+                this.updatePlayersList(this, null);
+            });
+
+            hub.On("PlayerLeftRoom", data =>
+            {
+                string player = data.ToString();
+                this.Players.Remove(player);
+                this.TeamA.Remove(player);
+                this.TeamB.Remove(player);
                 this.updatePlayersList(this, null);
             });
 
@@ -54,7 +65,28 @@ namespace FreeJustBelot.ViewModels
         public async void ConnectToHub(string sessionKey, string gameName)
         {
             await connection.Start();
-            await hub.Invoke("JoinGame", sessionKey, gameName);
+            await hub.Invoke("JoinRoom", sessionKey, gameName);
+        }
+
+        public async Task<bool> LeaveGame()
+        {
+            var response = await DataPersister.LeaveGameAsync(this.gameName, LoginViewModel.sessionKey);
+            if (response.Message != "Left.")
+            {
+                throw new InvalidOperationException("Something went wrong.");
+            }
+
+            await hub.Invoke("LeaveRoom", this.gameName);
+
+            this.connection.Stop();
+            this.hub = null;
+            this.connection = null;
+            this.Players = null;
+            this.TeamA = null;
+            this.TeamB = null;
+            this.gameName = null;
+
+            return true;
         }
     }
 }

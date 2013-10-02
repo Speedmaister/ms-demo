@@ -22,6 +22,20 @@ namespace FreeJustBelot.Pages
     /// </summary>
     public sealed partial class WaitForGameToStart : FreeJustBelot.Common.LayoutAwarePage
     {
+        protected async override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                var context = this.DataContext as WaitForGameToStartViewModel;
+                var hasLeftGame = await context.LeaveGame();
+                if (!hasLeftGame)
+                {
+                    throw new Exception("Fatal error!");
+                }
+            }
+
+            base.OnNavigatedFrom(e);
+        }
 
         public WaitForGameToStart()
         {
