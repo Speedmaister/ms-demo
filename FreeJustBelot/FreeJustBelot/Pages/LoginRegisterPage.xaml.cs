@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FreeJustBelot.Models;
+using FreeJustBelot.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -24,6 +26,25 @@ namespace FreeJustBelot.Pages
         public LoginRegisterPage()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            var context = this.DataContext as LoginViewModel;
+            LoginModel loginModel = context.Settings.LoadProfileFromLocalSettings();
+            if (loginModel != null)
+            {
+                this.MainLoginPanel.Children.Clear();
+                this.MainLoginPanel.Children.Add(new ProgressRing()
+                {
+                    Width = 100,
+                    Height = 100,
+                    IsActive = true
+                });
+
+                context.Login.Execute(loginModel);
+            }
         }
 
         /// <summary>

@@ -18,14 +18,16 @@ namespace FreeJustBelot.ViewModels
         private INavigationService navigation;
         private ICommand createGame;
         private ICommand joinGame;
+        private SettingsService settings;
         public IEnumerable<GameModel> AllGames { get; set; }
         public ICommand LogOutCommand { get; set; }
         public CreateGameModel NewGame { get; set; }
         public string GamePassword { get; set; }
         public WaitForGameToStartViewModel WaitVM { get; set; }
 
-        public HomeViewModel(INavigationService navigation)
+        public HomeViewModel(INavigationService navigation,SettingsService settings)
         {
+            this.settings = settings;
             this.navigation = navigation;
             this.NewGame = new CreateGameModel();
             this.LogOutCommand = new DelegateCommand<object>(this.HandleLogoutCommand);
@@ -116,6 +118,7 @@ namespace FreeJustBelot.ViewModels
             await DataPersister.LogoutUser(LoginViewModel.sessionKey);
             LoginViewModel.sessionKey = null;
             LoginViewModel.nickname = null;
+            this.settings.DeleteProfileFromLocalSettings();
             this.navigation.Navigate(Views.LoginRegister);
         }
 

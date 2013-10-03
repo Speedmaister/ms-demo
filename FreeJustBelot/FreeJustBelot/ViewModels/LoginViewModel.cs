@@ -16,6 +16,7 @@ namespace FreeJustBelot.ViewModels
 {
     public class LoginViewModel : BindableBase
     {
+        private SettingsService settings;
         private INavigationService navigation;
         private ICommand showRegisterForm;
         private ICommand showLoginForm;
@@ -30,8 +31,9 @@ namespace FreeJustBelot.ViewModels
         public static string nickname;
         private bool isValidData;
 
-        public LoginViewModel(INavigationService navigation)
+        public LoginViewModel(INavigationService navigation,SettingsService settings)
         {
+            this.settings = settings;
             this.IsValidData = false;
             this.navigation = navigation;
             this.UserRegisterForm = new UserModel();
@@ -127,7 +129,7 @@ namespace FreeJustBelot.ViewModels
             {
                 if (this.login == null)
                 {
-                    this.login = new DelegateCommand<object>(this.HandleLoginCommand);
+                    this.login = new DelegateCommand<LoginModel>(this.HandleLoginCommand);
                 }
 
                 return this.login;
@@ -144,6 +146,14 @@ namespace FreeJustBelot.ViewModels
                 }
 
                 return this.register;
+            }
+        }
+
+        public SettingsService Settings
+        {
+            get
+            {
+                return this.settings;
             }
         }
 
@@ -172,6 +182,7 @@ namespace FreeJustBelot.ViewModels
                 this.UserRegisterForm.Nickname = "";
                 this.UserRegisterForm.Password = "";
                 this.IsValidData = false;
+                this.settings.SaveProfileToLocalSettings(registrationModel.Username, registrationModel.AuthCode);
             }
             else
             {
@@ -181,12 +192,22 @@ namespace FreeJustBelot.ViewModels
             this.OnPropertyChanged("UserRegisterForm");
         }
 
-        private async void HandleLoginCommand(object parameter)
+        private async void HandleLoginCommand(LoginModel parameter)
         {
-            var userName = this.UserRegisterForm.Username;
-            var password = this.UserRegisterForm.Password;
-
-            string authCode = GetAuthCode(userName, password);
+            string userName;
+            string password;
+            string authCode;
+            if (parameter == null)
+            {
+                userName = this.UserRegisterForm.Username;
+                password = this.UserRegisterForm.Password;
+                authCode = GetAuthCode(userName, password);
+            }
+            else
+            {
+                userName = parameter.Username;
+                authCode = parameter.Password;
+            }
 
             UserModel loginModel = new UserModel
             {
@@ -202,6 +223,7 @@ namespace FreeJustBelot.ViewModels
                 this.navigation.Navigate(Views.Home);
                 this.UserRegisterForm.Password = "";
                 this.IsValidData = false;
+                this.settings.SaveProfileToLocalSettings(loginModel.Username, loginModel.AuthCode);
             }
             else
             {
