@@ -25,7 +25,7 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding PageTitle}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Name="MainLoginPanel" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="VerticalAlignment" Value="Center" />

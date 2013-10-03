@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Windows.UI.ApplicationSettings;
 using FreeJustBelot.Pages;
 using FreeJustBelot.ViewModels;
+using FreeJustBelot.Models;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -35,6 +36,7 @@ namespace FreeJustBelot
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.Resuming += OnResuming;
 
         }
 
@@ -88,13 +90,28 @@ namespace FreeJustBelot
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //var appVM = this.Resources.FirstOrDefault(x => x.Key.Equals("AppVM")).Value as AppViewModel;
-            //if (!appVM.IsLogout())
-            //{
-            //    appVM.LogOutCommand.Execute(null);
-            //}
-
+            var mainVM = this.Resources.FirstOrDefault(x => x.Key.Equals("AppVM")).Value as AppViewModel;
+            mainVM.HomeVM.LogOutCommand.Execute(null);
             deferral.Complete();
+        }
+
+
+        private void OnResuming(object sender, object e)
+        {
+            var mainVM = this.Resources.FirstOrDefault(x => x.Key.Equals("AppVM")).Value as AppViewModel;
+            LoginModel loginModel = mainVM.LoginVM.Settings.LoadProfileFromLocalSettings();
+            if (loginModel != null)
+            {
+                //this.MainLoginPanel.Children.Clear();
+                //this.MainLoginPanel.Children.Add(new ProgressRing()
+                //{
+                //    Width = 100,
+                //    Height = 100,
+                //    IsActive = true
+                //});
+
+                 mainVM.LoginVM.Login.Execute(loginModel);
+            }
         }
     }
 }

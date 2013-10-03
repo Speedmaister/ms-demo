@@ -14,13 +14,15 @@ namespace FreeJustBelot.ViewModels
     public class AppViewModel : BindableBase
     {
         private INavigationService navigation;
+        private SettingsService settings;
 
         public AppViewModel()
             : base()
         {
+            this.settings = new SettingsService();
             this.navigation = new NavigationService();
-            this.LoginVM = new LoginViewModel(this.navigation);
-            this.HomeVM = new HomeViewModel(this.navigation);
+            this.LoginVM = new LoginViewModel(this.navigation,this.settings);
+            this.HomeVM = new HomeViewModel(this.navigation,this.settings);
         }
 
         public LoginViewModel LoginVM { get; set; }

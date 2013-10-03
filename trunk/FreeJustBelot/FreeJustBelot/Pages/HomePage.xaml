@@ -50,6 +50,9 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollViewer>
+            <ListView Grid.Column="1" >
+                
+            </ListView>
             <StackPanel Grid.Column="1" Margin="40" VerticalAlignment="Bottom">
                 <Border BorderBrush="White" BorderThickness="1" Width="300"  Visibility="Collapsed" Name="CreateGamePanel" Margin="0 0 0 30">
                     <Grid VerticalAlignment="Bottom"     Width="300"                HorizontalAlignment="Right">
