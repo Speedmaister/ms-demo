@@ -10,6 +10,9 @@
     DataContext="{Binding LoginVM, Source={StaticResource AppVM}}"
     mc:Ignorable="d">
     <Grid Style="{StaticResource LayoutRootStyle}">
+    	<Grid.Background>
+    		<ImageBrush ImageSource="ms-appx:///Assets/background1.jpg"/>
+    	</Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -18,11 +21,11 @@
         <!-- Back button and page title -->
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding PageTitle}" Style="{StaticResource PageHeaderTextStyle}"/>
+            <!--<Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>-->
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding PageTitle}" FontWeight="Medium" Style="{StaticResource PageHeaderTextStyle}" />
         </Grid>
 
         <StackPanel Name="MainLoginPanel" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -58,23 +61,23 @@
                     <Setter Property="Margin" Value="0 0 0 300" />
                 </Style>
             </StackPanel.Resources>
-                <Grid Visibility="{Binding IsLoginVisible,Converter={StaticResource boolToVisibilityConverter}}">
+                <Grid Name="LoginPanel" Visibility="{Binding IsLoginVisible,Converter={StaticResource boolToVisibilityConverter}}" Background="#B2000000">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="200" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0">Username</TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding UserRegisterForm.Username,Mode=TwoWay}"/>
+                <TextBox Width="180" Grid.Row="0" Grid.Column="1" Text="{Binding UserRegisterForm.Username,Mode=TwoWay}"/>
                 <TextBlock  Grid.Row="1" Grid.Column="0">Password</TextBlock>
-                <PasswordBox  Grid.Row="1" Grid.Column="1" Password="{Binding UserRegisterForm.Password,Mode=TwoWay}"/>
+                <PasswordBox  Width="180" Grid.Row="1" Grid.Column="1" Password="{Binding UserRegisterForm.Password,Mode=TwoWay}"/>
                 <Button Grid.Column="0" Grid.Row="3"
-                    Command="{Binding Login}">Login</Button>
+                    Command="{Binding Login}" Click="LoginClick">Login</Button>
                 <HyperlinkButton Grid.Row="3" Grid.Column="1" 
                              Command="{Binding ShowRegisterForm}"
                             Content="Register" />
@@ -83,32 +86,33 @@
                     Invalid username or password.</TextBlock>
             </Grid>
 
-            <Grid Visibility="{Binding IsRegisterVisible,Converter={StaticResource boolToVisibilityConverter}}">
+            <Grid Name="RegisterPanel" Visibility="{Binding IsRegisterVisible,Converter={StaticResource boolToVisibilityConverter}}" Background="#B2000000">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
+                    <RowDefinition Height="60" />
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200" />
                     <ColumnDefinition Width="200" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Row="0" Grid.Column="0">Username</TextBlock>
-                <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding UserRegisterForm.Username,Mode=TwoWay}"/>
+                <TextBox  Width="180" Grid.Row="0" Grid.Column="1" Text="{Binding UserRegisterForm.Username,Mode=TwoWay}"/>
                 <TextBlock Grid.Row="1" Grid.Column="0">Nickname</TextBlock>
-                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding UserRegisterForm.Nickname,Mode=TwoWay}"/>
+                <TextBox  Width="180" Grid.Row="1" Grid.Column="1" Text="{Binding UserRegisterForm.Nickname,Mode=TwoWay}"/>
                 <TextBlock  Grid.Row="2" Grid.Column="0">Password</TextBlock>
-                <PasswordBox  Grid.Row="2" Grid.Column="1" Password="{Binding UserRegisterForm.Password,Mode=TwoWay}"/>
+                <PasswordBox  Width="180"  Grid.Row="2" Grid.Column="1" Password="{Binding UserRegisterForm.Password,Mode=TwoWay}"/>
                 <HyperlinkButton Grid.Column="0" Grid.Row="4"
                              Command="{Binding ShowLoginForm}">Login</HyperlinkButton>
-                <Button Grid.Row="4" Grid.Column="1"  Command="{Binding Register}"
+                <Button Grid.Row="4" Grid.Column="1"  Command="{Binding Register}" Click="LoginClick"
                             Content="Register" />
                 <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Foreground="Red"
                             Visibility="{Binding IsValidData,Converter={StaticResource boolToVisibilityConverter}}">
                     Invalid username or password.</TextBlock>
             </Grid>
+            <ProgressRing Name="ProgressRingItem" Width="50" Height="50" IsActive="True" Visibility="{Binding IsProgressBarVisible,Mode=TwoWay,Converter={StaticResource boolToVisibilityConverter}}" VerticalAlignment="Bottom"/>
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
