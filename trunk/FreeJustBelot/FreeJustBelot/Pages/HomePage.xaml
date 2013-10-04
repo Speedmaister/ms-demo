@@ -32,7 +32,7 @@
                 <ColumnDefinition Width="800"/>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ScrollViewer Grid.Column="0">
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
                 <ListView Name="GamesListView" ItemsSource="{Binding AllGames}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -50,8 +50,15 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </ScrollViewer>
-            <ListView Grid.Column="1" >
-                
+            <ListView Grid.Column="1" ItemsSource="{Binding Friends}" SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse Width="10" Height="10" Fill="{Binding Status,Converter={StaticResource boolToColorConverter}}"/>
+                            <TextBlock Text="{Binding FriendName}"></TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
             <StackPanel Grid.Column="1" Margin="40" VerticalAlignment="Bottom">
                 <Border BorderBrush="White" BorderThickness="1" Width="300"  Visibility="Collapsed" Name="CreateGamePanel" Margin="0 0 0 30">
@@ -121,6 +128,30 @@
                         <Button Command="{Binding JoinGame}" CommandParameter="{Binding ElementName=GamesListView,Path=SelectedItem}" Content="Join" Width="100" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
                     </Grid>
                 </Border>
+                <Border BorderBrush="White" BorderThickness="1" Width="300"  Visibility="Collapsed" Name="AddFriendPanel" Margin="0 0 0 30">
+                    <Grid Width="300">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Padding" Value="10"/>
+                            </Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="Width" Value="150"/>
+                            </Style>
+                        </Grid.Resources>
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Center">Friend name</TextBlock>
+                        <TextBox Grid.Row="1" Text="{Binding FriendName,Mode=TwoWay}" Width="200"/>
+                        <Button Margin="95 0 0 0" Grid.Row="2" Command="{Binding AddFriendCommand}">Add Friend</Button>
+                    </Grid>
+                </Border>
             </StackPanel>
         </Grid>
 
@@ -156,7 +187,15 @@
     </Grid>
     <common:LayoutAwarePage.TopAppBar>
         <AppBar>
-            <Button Style="{StaticResource OutAppBarButtonStyle}" AutomationProperties.Name="Logout" Command="{Binding LogOutCommand}"></Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Style="{StaticResource OutAppBarButtonStyle}" AutomationProperties.Name="Logout" Command="{Binding LogOutCommand}"/>
+                <Button Grid.Column="2" Style="{StaticResource AddFriendAppBarButtonStyle}" AutomationProperties.Name="Add Friend" Click="OnAddFriendButtonClick"/>
+            </Grid>
         </AppBar>
     </common:LayoutAwarePage.TopAppBar>
     <common:LayoutAwarePage.BottomAppBar>

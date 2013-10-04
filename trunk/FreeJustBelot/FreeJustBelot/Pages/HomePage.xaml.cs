@@ -58,13 +58,25 @@ namespace FreeJustBelot.Pages
 
         private void OnCreateGameButtonClick(object sender, RoutedEventArgs e)
         {
+            this.AddFriendPanel.Visibility = Visibility.Collapsed;
+            this.JoinGamePanel.Visibility = Visibility.Collapsed;
             this.CreateGamePanel.Visibility = Visibility.Visible;
             this.BottomAppBar.IsOpen = false;
         }
 
         private void OnJoinGameButtonClick(object sender, RoutedEventArgs e)
         {
+            this.AddFriendPanel.Visibility = Visibility.Collapsed;
+            this.CreateGamePanel.Visibility = Visibility.Collapsed;
             this.JoinGamePanel.Visibility = Visibility.Visible;
+            this.BottomAppBar.IsOpen = false;
+        }
+
+        private void OnAddFriendButtonClick(object sender, RoutedEventArgs e)
+        {
+            this.AddFriendPanel.Visibility = Visibility.Visible;
+            this.CreateGamePanel.Visibility = Visibility.Collapsed;
+            this.JoinGamePanel.Visibility = Visibility.Collapsed;
             this.BottomAppBar.IsOpen = false;
         }
     }
