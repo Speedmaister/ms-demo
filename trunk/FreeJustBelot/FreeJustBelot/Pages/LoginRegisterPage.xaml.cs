@@ -35,13 +35,9 @@ namespace FreeJustBelot.Pages
             LoginModel loginModel = context.Settings.LoadProfileFromLocalSettings();
             if (loginModel != null)
             {
-                this.MainLoginPanel.Children.Clear();
-                this.MainLoginPanel.Children.Add(new ProgressRing()
-                {
-                    Width = 100,
-                    Height = 100,
-                    IsActive = true
-                });
+                this.LoginPanel.Visibility = Visibility.Collapsed;
+                this.RegisterPanel.Visibility = Visibility.Collapsed;
+                context.IsProgressBarVisible = true;
 
                 context.Login.Execute(loginModel);
             }
@@ -68,6 +64,12 @@ namespace FreeJustBelot.Pages
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void LoginClick(object sender, RoutedEventArgs e)
+        {
+            var context = this.DataContext as LoginViewModel;
+            context.IsProgressBarVisible = true;
         }
     }
 }

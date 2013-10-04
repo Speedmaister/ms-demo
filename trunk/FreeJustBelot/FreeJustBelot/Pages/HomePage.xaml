@@ -12,6 +12,9 @@
     mc:Ignorable="d">
 
     <Grid Style="{StaticResource LayoutRootStyle}">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/background1.jpg" />
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -24,135 +27,146 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--<Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>-->
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Home" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Home" FontWeight="Medium" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
-
         <Grid Grid.Row="1" Margin="120 0 0 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="800"/>
-                <ColumnDefinition Width="*" />
+            	<ColumnDefinition Width="800"/>
+            	<ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
-                <ListView Name="GamesListView" ItemsSource="{Binding AllGames}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel>
-                                <TextBlock>
-                                    <Run Text="{Binding Name}"/>
-                                    <Run Text=" "/>
-                                    <Run Text="{Binding Host}"/>                                      
-                                    <Run Text=" "/>
-                                    <Run Text="{Binding PlayersWaiting}"/>
-                                    <Run Text="/4"/>
-                                </TextBlock>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </ScrollViewer>
-            <ListView Grid.Column="1" ItemsSource="{Binding Friends}" SelectionMode="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Ellipse Width="10" Height="10" Fill="{Binding Status,Converter={StaticResource boolToColorConverter}}"/>
-                            <TextBlock Text="{Binding FriendName}"></TextBlock>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <StackPanel Grid.Column="1" Margin="40" VerticalAlignment="Bottom">
-                <Border BorderBrush="White" BorderThickness="1" Width="300"  Visibility="Collapsed" Name="CreateGamePanel" Margin="0 0 0 30">
-                    <Grid VerticalAlignment="Bottom"     Width="300"                HorizontalAlignment="Right">
-                        <Grid.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="Padding" Value="10"/>
-                            </Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="Margin" Value="10"/>
-                            </Style>
-                        </Grid.Resources>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="100"/>
-                            <ColumnDefinition Width="200"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="60"/>
-                            <RowDefinition Height="60"/>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextAlignment="Center">Create Game</TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="0">Name :</TextBlock>
-                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewGame.Name,Mode=TwoWay}"/>
-                        <TextBlock Grid.Row="2" Grid.Column="0">Password :</TextBlock>
-                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewGame.Password,Mode=TwoWay}"/>
-                        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Command="{Binding CreateGame}" Width="100" HorizontalAlignment="Center">Create</Button>
-                    </Grid>
-                </Border>
-                <Border BorderBrush="White" BorderThickness="1" Width="300"  Visibility="Collapsed" Name="JoinGamePanel" Margin="0 0 0 30">
-                    <Grid Width="300">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="60"/>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="150"/>
-                            <ColumnDefinition Width="150"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="Padding" Value="10"/>
-                            </Style>
-                            <Style TargetType="PasswordBox">
-                                <Setter Property="Height" Value="40"/>
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="Margin" Value="10"/>
-                                <Setter Property="Width" Value="150"/>
-                            </Style>
-                        </Grid.Resources>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                        <Run Text="Join game: "/>
-                        <Run Text="{Binding ElementName=GamesListView,Path=SelectedItem.Name}"/>
-                        </TextBlock>
-                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                         <Run Text="From: "/>
-                        <Run Text="{Binding ElementName=GamesListView,Path=SelectedItem.Host}"/>
-                        </TextBlock>
-                        <TextBlock Grid.Row="2" Grid.Column="0">Password:</TextBlock>
-                        <PasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding GamePassword,Mode=TwoWay}"></PasswordBox>
-                        <Button Command="{Binding JoinGame}" CommandParameter="{Binding ElementName=GamesListView,Path=SelectedItem}" Content="Join" Width="100" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
-                    </Grid>
-                </Border>
-                <Border BorderBrush="White" BorderThickness="1" Width="300"  Visibility="Collapsed" Name="AddFriendPanel" Margin="0 0 0 30">
-                    <Grid Width="300">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="40"/>
-                            <RowDefinition Height="60"/>
-                            <RowDefinition Height="40"/>
-                        </Grid.RowDefinitions>
-                        <Grid.Resources>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="Padding" Value="10"/>
-                            </Style>
-                            <Style TargetType="TextBox">
-                                <Setter Property="Height" Value="40"/>
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="Margin" Value="10"/>
-                                <Setter Property="Width" Value="150"/>
-                            </Style>
-                        </Grid.Resources>
-                        <TextBlock Grid.Row="0" HorizontalAlignment="Center">Friend name</TextBlock>
-                        <TextBox Grid.Row="1" Text="{Binding FriendName,Mode=TwoWay}" Width="200"/>
-                        <Button Margin="95 0 0 0" Grid.Row="2" Command="{Binding AddFriendCommand}">Add Friend</Button>
-                    </Grid>
-                </Border>
-            </StackPanel>
+        	<ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Background="#B2000000" Width="600" Height="528" HorizontalAlignment="Left" VerticalAlignment="Top">
+        		<ListView x:Name="GamesListView" ItemsSource="{Binding AllGames}" ItemContainerStyle="{StaticResource GameListViewItem}">
+        			<ListView.ItemTemplate>
+        				<DataTemplate>
+        					<StackPanel>
+        						<TextBlock>
+        							<Run Text="{Binding Name}"/>
+        							<Run Text=" "/>
+        							<Run Text="{Binding Host}"/>                                      
+        							<Run Text=" "/>
+        							<Run Text="{Binding PlayersWaiting}"/>
+        							<Run Text="/4"/>
+        						</TextBlock>
+        					</StackPanel>
+        				</DataTemplate>
+        			</ListView.ItemTemplate>
+        		</ListView>
+        	</ScrollViewer>
+        	<ScrollViewer Height="300" Grid.Column="1" Background="#B2000000" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" Width="350" HorizontalAlignment="Left">
+        		<ListView ItemsSource="{Binding Friends}" SelectionMode="None" ItemContainerStyle="{StaticResource PLayerListViewItem}" HorizontalAlignment="Left">
+        			<ListView.ItemTemplate>
+        				<DataTemplate>
+        					<StackPanel Orientation="Horizontal">
+        						<Ellipse Margin="10" Width="10" Height="10" Fill="{Binding Status, Converter={StaticResource boolToColorConverter}}"/>
+        						<TextBlock Margin="0 3 0 0" Text="{Binding FriendName}"/>
+        					</StackPanel>
+        				</DataTemplate>
+        			</ListView.ItemTemplate>
+        		</ListView>
+        	</ScrollViewer>
+        	<StackPanel Grid.Column="1" Margin="40" VerticalAlignment="Bottom">
+        		<Border BorderBrush="White" BorderThickness="0" Width="300"  Visibility="Collapsed" x:Name="CreateGamePanel" Margin="0 0 0 30" Background="#B2000000">
+        			<Grid VerticalAlignment="Bottom"     Width="300"                HorizontalAlignment="Right">
+        				<Grid.Resources>
+        					<Style TargetType="TextBlock">
+        						<Setter Property="FontSize" Value="20"/>
+        						<Setter Property="Padding" Value="10"/>
+        					</Style>
+        					<Style TargetType="TextBox">
+        						<Setter Property="FontSize" Value="20"/>
+        						<Setter Property="Margin" Value="10"/>
+        					</Style>
+        				</Grid.Resources>
+        				<Grid.ColumnDefinitions>
+        					<ColumnDefinition Width="100"/>
+        					<ColumnDefinition Width="200"/>
+        				</Grid.ColumnDefinitions>
+        				<Grid.RowDefinitions>
+        					<RowDefinition Height="40"/>
+        					<RowDefinition Height="60"/>
+        					<RowDefinition Height="60"/>
+        					<RowDefinition Height="40"/>
+        				</Grid.RowDefinitions>
+        				<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextAlignment="Center">
+        					<Run Text="Create Game"/>
+        				</TextBlock>
+        				<TextBlock Grid.Row="1" Grid.Column="0">
+        					<Run Text="Name :"/>
+        				</TextBlock>
+        				<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewGame.Name, Mode=TwoWay}"/>
+        				<TextBlock Grid.Row="2" Grid.Column="0">
+        					<Run Text="Password :"/>
+        				</TextBlock>
+        				<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewGame.Password, Mode=TwoWay}"/>
+                        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3"  Click="OnSubmitButtonClicked" Command="{Binding CreateGame}" Width="100" HorizontalAlignment="Center" Content="Create"/>
+        			</Grid>
+        		</Border>
+        		<Border BorderBrush="White" BorderThickness="0" Width="300"  Visibility="Collapsed" x:Name="JoinGamePanel" Margin="0 0 0 30" Background="#B2000000">
+        			<Grid Width="300">
+        				<Grid.Resources>
+        					<Style TargetType="TextBlock">
+        						<Setter Property="FontSize" Value="20"/>
+        						<Setter Property="Padding" Value="10"/>
+        					</Style>
+        					<Style TargetType="PasswordBox">
+        						<Setter Property="Height" Value="40"/>
+        						<Setter Property="FontSize" Value="20"/>
+        						<Setter Property="Margin" Value="10"/>
+        						<Setter Property="Width" Value="150"/>
+        					</Style>
+        				</Grid.Resources>
+        				<Grid.RowDefinitions>
+        					<RowDefinition Height="40"/>
+        					<RowDefinition Height="40"/>
+        					<RowDefinition Height="60"/>
+        					<RowDefinition Height="40"/>
+        				</Grid.RowDefinitions>
+        				<Grid.ColumnDefinitions>
+        					<ColumnDefinition Width="150"/>
+        					<ColumnDefinition Width="150"/>
+        				</Grid.ColumnDefinitions>
+        				<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+        					<Run Text="Join game: "/>
+        					<Run Text="{Binding SelectedItem.Name, ElementName=GamesListView}"/>
+        				</TextBlock>
+        				<TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+        					<Run Text="From: "/>
+        					<Run Text="{Binding SelectedItem.Host, ElementName=GamesListView}"/>
+        				</TextBlock>
+        				<TextBlock Grid.Row="2" Grid.Column="0">
+        					<Run Text="Password:"/>
+        				</TextBlock>
+        				<PasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding GamePassword, Mode=TwoWay}"/>
+                        <Button Command="{Binding JoinGame}"  Click="OnSubmitButtonClicked" CommandParameter="{Binding SelectedItem, ElementName=GamesListView}" Content="Join" Width="100" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
+        			</Grid>
+        		</Border>
+        		<Border BorderBrush="White" BorderThickness="0" Width="300"  Visibility="Collapsed" x:Name="AddFriendPanel" Margin="0 0 0 30" Background="#B2000000">
+        			<Grid Width="300">
+        				<Grid.Resources>
+        					<Style TargetType="TextBlock">
+        						<Setter Property="FontSize" Value="20"/>
+        						<Setter Property="Padding" Value="10"/>
+        					</Style>
+        					<Style TargetType="TextBox">
+        						<Setter Property="Height" Value="40"/>
+        						<Setter Property="FontSize" Value="20"/>
+        						<Setter Property="Margin" Value="10"/>
+        						<Setter Property="Width" Value="150"/>
+        					</Style>
+        				</Grid.Resources>
+        				<Grid.RowDefinitions>
+        					<RowDefinition Height="40"/>
+        					<RowDefinition Height="60"/>
+        					<RowDefinition Height="40"/>
+        				</Grid.RowDefinitions>
+        				<TextBlock Grid.Row="0" HorizontalAlignment="Center">
+        					<Run Text="Friend name"/>
+        				</TextBlock>
+        				<TextBox Grid.Row="1" Text="{Binding FriendName, Mode=TwoWay}" Width="200"/>
+        				<Button Margin="95 0 0 0" Grid.Row="2" Command="{Binding AddFriendCommand}" Click="OnSubmitButtonClicked" Content="Add Friend"/>
+        			</Grid>
+        		</Border>
+        	</StackPanel>
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

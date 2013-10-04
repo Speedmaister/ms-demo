@@ -25,11 +25,12 @@ namespace FreeJustBelot.ViewModels
         private bool isRegisterVisible = false;
         private bool isLoginVisible = true;
         private string pageTitle = "Login";
+        private bool isValidData;
+        private bool isProgressBarVisible;
 
         public static string sessionKey;
 
         public static string nickname;
-        private bool isValidData;
 
         public LoginViewModel(INavigationService navigation,SettingsService settings)
         {
@@ -78,6 +79,20 @@ namespace FreeJustBelot.ViewModels
             {
                 this.isLoginVisible = value;
                 this.OnPropertyChanged("IsLoginVisible");
+            }
+        }
+
+        public bool IsProgressBarVisible
+        {
+            get
+            {
+                return this.isProgressBarVisible;
+            }
+
+            set
+            {
+                this.isProgressBarVisible = value;
+                this.OnPropertyChanged("IsProgressBarVisible");
             }
         }
 
@@ -190,6 +205,8 @@ namespace FreeJustBelot.ViewModels
                 this.IsValidData = true;
             }
 
+            this.IsProgressBarVisible = false;
+
             this.OnPropertyChanged("UserRegisterForm");
         }
 
@@ -231,6 +248,8 @@ namespace FreeJustBelot.ViewModels
                 this.UserRegisterForm.Password = "";
                 this.IsValidData = true;
             }
+
+            this.IsProgressBarVisible = false;
 
             this.OnPropertyChanged("UserRegisterForm");
         }

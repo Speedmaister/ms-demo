@@ -11,6 +11,9 @@
     mc:Ignorable="d">
 
     <Grid Style="{StaticResource LayoutRootStyle}">
+    	<Grid.Background>
+    		<ImageBrush ImageSource="ms-appx:///Assets/background1.jpg"/>
+    	</Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -23,17 +26,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Waiting Room" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Waiting Room" FontWeight="Medium" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-        <StackPanel Grid.Row="1" Height="400" Name="panel">
+        <StackPanel Grid.Row="1" Height="450" Name="panel" Margin="120,0,0,0" Width="300" Background="#B2000000">
             <StackPanel.Resources>
                 <Style TargetType="ListView">
                     <Setter Property="SelectionMode" Value="None"/>
                 </Style>
             </StackPanel.Resources>
-            <TextBlock FontSize="30">Team A</TextBlock>
-            <ListView Height="150" ItemsSource="{Binding TeamA}" Name="ItemsPanel">
+            <TextBlock FontSize="30" Margin="100,0,0,0">Team A</TextBlock>
+            <ListView Height="150" ItemsSource="{Binding TeamA}" ItemContainerStyle="{StaticResource GameListViewItem}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"/>
@@ -41,8 +44,8 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <TextBlock FontSize="30">Team B</TextBlock>
-            <ListView Height="150" ItemsSource="{Binding TeamB}">
+            <TextBlock FontSize="30" Margin="100,0,0,0">Team B</TextBlock>
+            <ListView Height="150" ItemsSource="{Binding TeamB}" ItemContainerStyle="{StaticResource GameListViewItem}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding}"/>
@@ -50,7 +53,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button Visibility="{Binding IsVisible,Converter={StaticResource boolToVisibilityConverter}}" IsEnabled="{Binding IsGameReadyToStart}" Command="{Binding StartGameCommand}">Start Game</Button>
+            <Button Visibility="{Binding IsVisible,Converter={StaticResource boolToVisibilityConverter}}" IsEnabled="{Binding IsGameReadyToStart}" Command="{Binding StartGameCommand}" HorizontalAlignment="Center">Start Game</Button>
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
