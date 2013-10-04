@@ -10,6 +10,7 @@
         <ResourceDictionary>
             <vm:AppViewModel x:Key="AppVM" />
             <converters:BoolToVisibilityConverter x:Key="boolToVisibilityConverter" />
+            <converters:BoolToColor x:Key="boolToColorConverter" />
             <ResourceDictionary.MergedDictionaries>
 
                 <!-- 

@@ -4,7 +4,7 @@
   <Properties>
     <DisplayName>FreeJustBelot</DisplayName>
     <PublisherDisplayName>Radoslav Sholev</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets\StoreLogo.jpg</Logo>
   </Properties>
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
@@ -15,9 +15,9 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="FreeJustBelot.App">
-      <VisualElements DisplayName="FreeJustBelot" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="FreeJustBelot" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+      <VisualElements DisplayName="FreeJustBelot" Logo="Assets\Logo.jpg" SmallLogo="Assets\SmallLogo.jpg" Description="FreeJustBelot" ForegroundText="light" BackgroundColor="#464646" ToastCapable="false">
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.jpg" />
+        <SplashScreen Image="Assets\SplashScreen.jpg" BackgroundColor="white" />
       </VisualElements>
     </Application>
   </Applications>

@@ -419,6 +419,11 @@
         <Setter Property="AutomationProperties.Name" Value="Target"/>
         <Setter Property="Content" Value="&#xE1D2;"/>
     </Style>
+    <Style x:Key="AddFriendAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="AddFriendAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Add Friend"/>
+        <Setter Property="Content" Value="&#xE1E2;"/>
+    </Style>
     <!-- 
         Standard AppBarButton Styles for use with Button and ToggleButton
     

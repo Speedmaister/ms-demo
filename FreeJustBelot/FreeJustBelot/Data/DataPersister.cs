@@ -109,5 +109,21 @@ namespace FreeJustBelot.Data
             string serviceUrl = "games/leave?sessionKey=" + sessionKey + "&gameName=" + gameName;
             return await requester.CreateGetRequestAsync<MessageModel>(serviceUrl);
         }
+
+        public async static Task<IEnumerable<string>> GetFriendsStatuses(string sessionKey)
+        {
+            string serviceUrl = "friends/get-online?sessionKey=" + sessionKey;
+            return await requester.CreateGetRequestAsync<IEnumerable<string>>(serviceUrl);
+        }
+
+        public async static Task<MessageModel> FindFriend(string sessionKey, string friendNickName)
+        {
+            string serviceUrl = "friends/find?sessionKey=" + sessionKey;
+            FriendModel model = new FriendModel
+            {
+                FriendName = friendNickName
+            };
+            return await requester.PostAsync<MessageModel>(serviceUrl, model);
+        }
     }
 }

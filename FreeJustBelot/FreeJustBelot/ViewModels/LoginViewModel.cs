@@ -183,6 +183,7 @@ namespace FreeJustBelot.ViewModels
                 this.UserRegisterForm.Password = "";
                 this.IsValidData = false;
                 this.settings.SaveProfileToLocalSettings(registrationModel.Username, registrationModel.AuthCode);
+                this.settings.CreateFriendsListInRoamingFile();
             }
             else
             {
