@@ -32,13 +32,17 @@ namespace FreeJustBelot.ViewModels
 
         public static string nickname;
 
-        public LoginViewModel(INavigationService navigation,SettingsService settings)
+        public LoginViewModel(INavigationService navigation, SettingsService settings)
         {
             this.settings = settings;
             this.IsValidData = false;
             this.navigation = navigation;
             this.UserRegisterForm = new UserModel();
         }
+
+        public string RegisterErrorMessage { get; set; }
+
+        public string LoginErrorMessage { get; set; }
 
         public string PageTitle
         {
@@ -188,10 +192,10 @@ namespace FreeJustBelot.ViewModels
                 AuthCode = authCode
             };
 
-            var response = await DataPersister.RegisterUser(registrationModel);
-            LoginViewModel.sessionKey = response.SessionKey;
-            if (LoginViewModel.sessionKey != null)
+            try
             {
+                var response = await DataPersister.RegisterUser(registrationModel);
+                LoginViewModel.sessionKey = response.SessionKey;
                 LoginViewModel.nickname = response.Nickname;
                 this.navigation.Navigate(Views.Home);
                 this.UserRegisterForm.Nickname = "";
@@ -200,9 +204,11 @@ namespace FreeJustBelot.ViewModels
                 this.settings.SaveProfileToLocalSettings(registrationModel.Username, registrationModel.AuthCode);
                 this.settings.CreateFriendsListInRoamingFile();
             }
-            else
+            catch (FormatException ex)
             {
                 this.IsValidData = true;
+                RegisterErrorMessage = ex.Message;
+                this.OnPropertyChanged("RegisterErrorMessage");
             }
 
             this.IsProgressBarVisible = false;
@@ -233,23 +239,25 @@ namespace FreeJustBelot.ViewModels
                 AuthCode = authCode
             };
 
-            var response = await DataPersister.LoginUser(loginModel);
-            LoginViewModel.sessionKey = response.SessionKey;
-            if (LoginViewModel.sessionKey != null)
+            try
             {
+                var response = await DataPersister.LoginUser(loginModel);
+                LoginViewModel.sessionKey = response.SessionKey;
                 LoginViewModel.nickname = response.Nickname;
-                this.navigation.Navigate(Views.Home,userName);
+                this.navigation.Navigate(Views.Home, userName);
                 this.UserRegisterForm.Password = "";
                 this.IsValidData = false;
                 this.settings.SaveProfileToLocalSettings(loginModel.Username, loginModel.AuthCode);
             }
-            else
+            catch (FormatException ex)
             {
-                this.UserRegisterForm.Password = "";
+                this.LoginErrorMessage = ex.Message;
+                this.OnPropertyChanged("LoginErrorMessage");
                 this.IsValidData = true;
             }
 
             this.IsProgressBarVisible = false;
+            this.UserRegisterForm.Password = "";
 
             this.OnPropertyChanged("UserRegisterForm");
         }
@@ -279,5 +287,6 @@ namespace FreeJustBelot.ViewModels
             authCode = CryptographicBuffer.EncodeToBase64String(encrypted);
             return authCode;
         }
+
     }
 }

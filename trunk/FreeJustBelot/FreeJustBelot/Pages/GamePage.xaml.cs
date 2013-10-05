@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FreeJustBelot.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -47,6 +48,11 @@ namespace FreeJustBelot.Pages
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var context = this.DataContext as GameViewModel;
         }
     }
 }

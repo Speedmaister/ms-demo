@@ -1,7 +1,9 @@
 ﻿using FreeJustBelot.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -41,9 +43,16 @@ namespace FreeJustBelot.Data
 
             string serviceUrl = "users/register";
 
-            var response = await requester.PostAsync<LoginModelReceived>(serviceUrl, registration);
+            HttpResponseMessage response = await requester.PostAsync(serviceUrl, registration);
+            var content = await response.Content.ReadAsStringAsync();
+            var loginModelReceived = JsonConvert.DeserializeObject<LoginModelReceived>(content);
+            if (loginModelReceived.SessionKey == null)
+            {
+                var errorMessage = JsonConvert.DeserializeObject<MessageModel>(content);
+                throw new FormatException(errorMessage.Message);
+            }
 
-            return response;
+            return loginModelReceived;
         }
 
         public async static Task<LoginModelReceived> LoginUser(UserModel login)
@@ -65,9 +74,16 @@ namespace FreeJustBelot.Data
 
             string serviceUrl = "users/login";
 
-            var response = await requester.PostAsync<LoginModelReceived>(serviceUrl, login);
+            HttpResponseMessage response = await requester.PostAsync(serviceUrl, login);
+            var content = await response.Content.ReadAsStringAsync();
+            var loginModelReceived = JsonConvert.DeserializeObject<LoginModelReceived>(content);
+            if (loginModelReceived.SessionKey == null)
+            {
+                var errorMessage = JsonConvert.DeserializeObject<MessageModel>(content);
+                throw new FormatException(errorMessage.Message);
+            }
 
-            return response;
+            return loginModelReceived;
         }
 
         public async static Task<object> LogoutUser(string sessionKey)

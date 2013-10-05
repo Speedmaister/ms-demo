@@ -119,7 +119,7 @@ namespace FreeJustBelot.Data
             });
         }
 
-        public Task PostAsync(string serviceUrl,
+        public Task<HttpResponseMessage> PostAsync(string serviceUrl,
             object data, string mediaType = "application/json")
         {
             var request = new HttpRequestMessage();

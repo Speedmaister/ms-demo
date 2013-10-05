@@ -11,7 +11,7 @@
     Loaded="LoadGames"
     mc:Ignorable="d">
 
-    <Grid Style="{StaticResource LayoutRootStyle}">
+    <Grid Style="{StaticResource LayoutRootStyle}" Name="HomeScreenPanel">
         <Grid.Background>
             <ImageBrush ImageSource="/Assets/background1.jpg" />
         </Grid.Background>
@@ -29,145 +29,150 @@
             <!--<Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>-->
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="Home" FontWeight="Medium" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
-        <Grid Grid.Row="1" Margin="120 0 0 0">
+        <Grid Grid.Row="1" Margin="120 0 0 0" Name="MainHomePanel" Visibility="Visible">
             <Grid.ColumnDefinitions>
-            	<ColumnDefinition Width="800"/>
-            	<ColumnDefinition Width="*" />
+                <ColumnDefinition Width="800"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-        	<ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Background="#B2000000" Width="600" Height="528" HorizontalAlignment="Left" VerticalAlignment="Top">
-        		<ListView x:Name="GamesListView" ItemsSource="{Binding AllGames}" ItemContainerStyle="{StaticResource GameListViewItem}" Padding="15">
-        			<ListView.ItemTemplate>
-        				<DataTemplate>
-        					<StackPanel>
-        						<TextBlock>
-        							<Run Text="{Binding Name}"/>
-        							<Run Text=" "/>
-        							<Run Text="{Binding Host}"/>                                      
-        							<Run Text=" "/>
-        							<Run Text="{Binding PlayersWaiting}"/>
+            <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Background="#B2000000" Width="600" Height="528" HorizontalAlignment="Left" VerticalAlignment="Top">
+                <ListView x:Name="GamesListView" ItemsSource="{Binding AllGames}" ItemContainerStyle="{StaticResource GameListViewItem}" Padding="15">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock>
+                                    <Run>Game: </Run>
+        							<Run Text="{Binding Name}" FontWeight="Medium"/>
+        							<Run Text=" By: "/>
+        							<Run Text="{Binding Host}" FontWeight="Medium"/>                                      
+        							<Run Text=" Slots taken: "/>
+        							<Run Text="{Binding PlayersWaiting}" FontWeight="Medium"/>
         							<Run Text="/4"/>
-        						</TextBlock>
-        					</StackPanel>
-        				</DataTemplate>
-        			</ListView.ItemTemplate>
-        		</ListView>
-        	</ScrollViewer>
-        	<ScrollViewer Height="300" Grid.Column="1" Background="#B2000000" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" Width="350" HorizontalAlignment="Left">
-        		<ListView ItemsSource="{Binding Friends}" SelectionMode="None" ItemContainerStyle="{StaticResource PLayerListViewItem}" HorizontalAlignment="Left">
-        			<ListView.ItemTemplate>
-        				<DataTemplate>
-        					<StackPanel Orientation="Horizontal">
-        						<Ellipse Margin="10" Width="10" Height="10" Fill="{Binding Status, Converter={StaticResource boolToColorConverter}}"/>
-        						<TextBlock Margin="0 3 0 0" Text="{Binding FriendName}"/>
-        					</StackPanel>
-        				</DataTemplate>
-        			</ListView.ItemTemplate>
-        		</ListView>
-        	</ScrollViewer>
-        	<StackPanel Grid.Column="1" Margin="40" VerticalAlignment="Bottom">
-        		<Border BorderBrush="White" BorderThickness="0" Width="300"  Visibility="Collapsed" x:Name="CreateGamePanel" Margin="0 0 0 30" Background="#B2000000">
-        			<Grid VerticalAlignment="Bottom"     Width="300"                HorizontalAlignment="Right">
-        				<Grid.Resources>
-        					<Style TargetType="TextBlock">
-        						<Setter Property="FontSize" Value="20"/>
-        						<Setter Property="Padding" Value="10"/>
-        					</Style>
-        					<Style TargetType="TextBox">
-        						<Setter Property="FontSize" Value="20"/>
-        						<Setter Property="Margin" Value="10"/>
-        					</Style>
-        				</Grid.Resources>
-        				<Grid.ColumnDefinitions>
-        					<ColumnDefinition Width="100"/>
-        					<ColumnDefinition Width="200"/>
-        				</Grid.ColumnDefinitions>
-        				<Grid.RowDefinitions>
-        					<RowDefinition Height="40"/>
-        					<RowDefinition Height="60"/>
-        					<RowDefinition Height="60"/>
-        					<RowDefinition Height="40"/>
-        				</Grid.RowDefinitions>
-        				<TextBlock Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextAlignment="Center">
+                                </TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+            <ScrollViewer Height="300" Grid.Column="1" Background="#B2000000" VerticalScrollBarVisibility="Auto" VerticalAlignment="Top" Width="350" HorizontalAlignment="Left">
+                <ListView ItemsSource="{Binding Friends}" SelectionMode="None" ItemContainerStyle="{StaticResource PLayerListViewItem}" HorizontalAlignment="Left">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Margin="10" Width="10" Height="10" Fill="{Binding Status, Converter={StaticResource boolToColorConverter}}"/>
+                                <TextBlock Margin="0 3 0 0" Text="{Binding FriendName}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+            <StackPanel Grid.Column="1" Margin="40" VerticalAlignment="Bottom">
+                <Border BorderBrush="White" BorderThickness="0" Width="300"  Visibility="Collapsed" x:Name="CreateGamePanel" Margin="0 0 0 30" Background="#B2000000">
+                    <Grid VerticalAlignment="Bottom"     Width="300"                HorizontalAlignment="Right">
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Padding" Value="10"/>
+                            </Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Margin" Value="10"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="200"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" TextAlignment="Center">
         					<Run Text="Create Game"/>
-        				</TextBlock>
-        				<TextBlock Grid.Row="1" Grid.Column="0">
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0">
         					<Run Text="Name :"/>
-        				</TextBlock>
-        				<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewGame.Name, Mode=TwoWay}"/>
-        				<TextBlock Grid.Row="2" Grid.Column="0">
+                        </TextBlock>
+                        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding NewGame.Name, Mode=TwoWay}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="0">
         					<Run Text="Password :"/>
-        				</TextBlock>
-        				<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewGame.Password, Mode=TwoWay}"/>
+                        </TextBlock>
+                        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewGame.Password, Mode=TwoWay}"/>
                         <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3"  Click="OnSubmitButtonClicked" Command="{Binding CreateGame}" Width="100" HorizontalAlignment="Center" Content="Create"/>
-        			</Grid>
-        		</Border>
-        		<Border BorderBrush="White" BorderThickness="0" Width="300"  Visibility="Collapsed" x:Name="JoinGamePanel" Margin="0 0 0 30" Background="#B2000000">
-        			<Grid Width="300">
-        				<Grid.Resources>
-        					<Style TargetType="TextBlock">
-        						<Setter Property="FontSize" Value="20"/>
-        						<Setter Property="Padding" Value="10"/>
-        					</Style>
-        					<Style TargetType="PasswordBox">
-        						<Setter Property="Height" Value="40"/>
-        						<Setter Property="FontSize" Value="20"/>
-        						<Setter Property="Margin" Value="10"/>
-        						<Setter Property="Width" Value="150"/>
-        					</Style>
-        				</Grid.Resources>
-        				<Grid.RowDefinitions>
-        					<RowDefinition Height="40"/>
-        					<RowDefinition Height="40"/>
-        					<RowDefinition Height="60"/>
-        					<RowDefinition Height="40"/>
-        				</Grid.RowDefinitions>
-        				<Grid.ColumnDefinitions>
-        					<ColumnDefinition Width="150"/>
-        					<ColumnDefinition Width="150"/>
-        				</Grid.ColumnDefinitions>
-        				<TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                    </Grid>
+                </Border>
+                <Border BorderBrush="White" BorderThickness="0" Width="300"  Visibility="Collapsed" x:Name="JoinGamePanel" Margin="0 0 0 30" Background="#B2000000">
+                    <Grid Width="300">
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Padding" Value="10"/>
+                            </Style>
+                            <Style TargetType="PasswordBox">
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="Width" Value="150"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="150"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
         					<Run Text="Join game: "/>
         					<Run Text="{Binding SelectedItem.Name, ElementName=GamesListView}"/>
-        				</TextBlock>
-        				<TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                        </TextBlock>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
         					<Run Text="From: "/>
         					<Run Text="{Binding SelectedItem.Host, ElementName=GamesListView}"/>
-        				</TextBlock>
-        				<TextBlock Grid.Row="2" Grid.Column="0">
+                        </TextBlock>
+                        <TextBlock Grid.Row="2" Grid.Column="0">
         					<Run Text="Password:"/>
-        				</TextBlock>
-        				<PasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding GamePassword, Mode=TwoWay}"/>
+                        </TextBlock>
+                        <PasswordBox Grid.Row="2" Grid.Column="1" Password="{Binding GamePassword, Mode=TwoWay}"/>
                         <Button Command="{Binding JoinGame}"  Click="OnSubmitButtonClicked" CommandParameter="{Binding SelectedItem, ElementName=GamesListView}" Content="Join" Width="100" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"/>
-        			</Grid>
-        		</Border>
-        		<Border BorderBrush="White" BorderThickness="0" Width="300"  Visibility="Collapsed" x:Name="AddFriendPanel" Margin="0 0 0 30" Background="#B2000000">
-        			<Grid Width="300">
-        				<Grid.Resources>
-        					<Style TargetType="TextBlock">
-        						<Setter Property="FontSize" Value="20"/>
-        						<Setter Property="Padding" Value="10"/>
-        					</Style>
-        					<Style TargetType="TextBox">
-        						<Setter Property="Height" Value="40"/>
-        						<Setter Property="FontSize" Value="20"/>
-        						<Setter Property="Margin" Value="10"/>
-        						<Setter Property="Width" Value="150"/>
-        					</Style>
-        				</Grid.Resources>
-        				<Grid.RowDefinitions>
-        					<RowDefinition Height="40"/>
-        					<RowDefinition Height="60"/>
-        					<RowDefinition Height="40"/>
-        				</Grid.RowDefinitions>
-        				<TextBlock Grid.Row="0" HorizontalAlignment="Center">
+                    </Grid>
+                </Border>
+                <Border BorderBrush="White" BorderThickness="0" Width="300"  Visibility="Collapsed" x:Name="AddFriendPanel" Margin="0 0 0 30" Background="#B2000000">
+                    <Grid Width="300">
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Padding" Value="10"/>
+                            </Style>
+                            <Style TargetType="TextBox">
+                                <Setter Property="Height" Value="40"/>
+                                <Setter Property="FontSize" Value="20"/>
+                                <Setter Property="Margin" Value="10"/>
+                                <Setter Property="Width" Value="150"/>
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" HorizontalAlignment="Center">
         					<Run Text="Friend name"/>
-        				</TextBlock>
-        				<TextBox Grid.Row="1" Text="{Binding FriendName, Mode=TwoWay}" Width="200"/>
-        				<Button Margin="95 0 0 0" Grid.Row="2" Command="{Binding AddFriendCommand}" Click="OnSubmitButtonClicked" Content="Add Friend"/>
-        			</Grid>
-        		</Border>
-        	</StackPanel>
+                        </TextBlock>
+                        <TextBox Grid.Row="1" Text="{Binding FriendName, Mode=TwoWay}" Width="200"/>
+                        <Button Margin="95 0 0 0" Grid.Row="2" Command="{Binding AddFriendCommand}" Click="OnSubmitButtonClicked" Content="Add Friend"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
         </Grid>
+
+        <StackPanel Grid.Row="1" Name="SnappedHomePanel" Visibility="Collapsed" VerticalAlignment="Center">
+            <Image Source="ms-appx:///Assets/SplashScreen.scale-100.jpg"></Image>
+        </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
 
@@ -179,8 +184,24 @@
                 <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
                 <VisualState x:Name="FullScreenPortrait">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HomeScreenPanel" Storyboard.TargetProperty="Background">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <ImageBrush ImageSource="/Assets/background1.jpg" />
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainHomePanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedHomePanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HomeTopAppBar" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="True"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HomeBottomAppBar" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="True"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -188,11 +209,27 @@
                 <!-- The back button and title have different styles when snapped -->
                 <VisualState x:Name="Snapped">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HomeScreenPanel" Storyboard.TargetProperty="Background">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="White"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainHomePanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedHomePanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HomeTopAppBar" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="False"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="HomeBottomAppBar" Storyboard.TargetProperty="IsEnabled">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="False"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -200,7 +237,7 @@
         </VisualStateManager.VisualStateGroups>
     </Grid>
     <common:LayoutAwarePage.TopAppBar>
-        <AppBar>
+        <AppBar Name="HomeTopAppBar">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
@@ -213,7 +250,7 @@
         </AppBar>
     </common:LayoutAwarePage.TopAppBar>
     <common:LayoutAwarePage.BottomAppBar>
-        <AppBar>
+        <AppBar Name="HomeBottomAppBar">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"/>
