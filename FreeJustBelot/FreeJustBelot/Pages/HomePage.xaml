@@ -35,7 +35,7 @@
             	<ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
         	<ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto" Background="#B2000000" Width="600" Height="528" HorizontalAlignment="Left" VerticalAlignment="Top">
-        		<ListView x:Name="GamesListView" ItemsSource="{Binding AllGames}" ItemContainerStyle="{StaticResource GameListViewItem}">
+        		<ListView x:Name="GamesListView" ItemsSource="{Binding AllGames}" ItemContainerStyle="{StaticResource GameListViewItem}" Padding="15">
         			<ListView.ItemTemplate>
         				<DataTemplate>
         					<StackPanel>

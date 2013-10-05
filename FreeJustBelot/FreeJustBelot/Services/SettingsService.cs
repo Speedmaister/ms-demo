@@ -17,7 +17,7 @@ namespace FreeJustBelot.Services
         private PasswordVault vault;
         private const string VaultSource = "userprofile";
         private const string FriendsFileName = "friends.json";
-        private string username;
+        public string username;
 
         public SettingsService()
         {
@@ -54,7 +54,7 @@ namespace FreeJustBelot.Services
         {
             try
             {
-                var file = await this.roamingStorage.GetFileAsync(FriendsFileName);
+                var file = await this.roamingStorage.GetFileAsync(this.username + FriendsFileName);
                 var content = await FileIO.ReadTextAsync(file);
                 List<FriendModel> friends = await JsonConvert.DeserializeObjectAsync<List<FriendModel>>(content);
                 return friends;
@@ -67,14 +67,14 @@ namespace FreeJustBelot.Services
 
         public async void CreateFriendsListInRoamingFile()
         {
-            var file = await this.roamingStorage.CreateFileAsync(FriendsFileName);
+            var file = await this.roamingStorage.CreateFileAsync(this.username + FriendsFileName);
         }
 
         public async Task SaveNewFriendToList(FriendModel newFriend)
         {
             try
             {
-                var file = await this.roamingStorage.GetFileAsync(FriendsFileName);
+                var file = await this.roamingStorage.GetFileAsync(this.username + FriendsFileName);
                 var content = await FileIO.ReadTextAsync(file);
                 List<FriendModel> friends = await JsonConvert.DeserializeObjectAsync<List<FriendModel>>(content);
                 if (friends == null)

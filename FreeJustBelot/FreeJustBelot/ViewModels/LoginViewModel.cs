@@ -238,7 +238,7 @@ namespace FreeJustBelot.ViewModels
             if (LoginViewModel.sessionKey != null)
             {
                 LoginViewModel.nickname = response.Nickname;
-                this.navigation.Navigate(Views.Home);
+                this.navigation.Navigate(Views.Home,userName);
                 this.UserRegisterForm.Password = "";
                 this.IsValidData = false;
                 this.settings.SaveProfileToLocalSettings(loginModel.Username, loginModel.AuthCode);

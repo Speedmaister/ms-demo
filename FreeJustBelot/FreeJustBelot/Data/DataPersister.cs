@@ -125,5 +125,10 @@ namespace FreeJustBelot.Data
             };
             return await requester.PostAsync<MessageModel>(serviceUrl, model);
         }
+        public async static Task<IEnumerable<string>> GetAllUsers(string sessionKey)
+        {
+            string serviceUrl = "users/all?sessionKey=" + sessionKey;
+            return await requester.CreateGetRequestAsync<IEnumerable<string>>(serviceUrl);
+        }
     }
 }

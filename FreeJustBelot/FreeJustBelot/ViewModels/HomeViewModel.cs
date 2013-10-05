@@ -98,6 +98,16 @@ namespace FreeJustBelot.ViewModels
             }
         }
 
+        public void LoadFriends(object username)
+        {
+            if (username != null)
+            {
+                this.settings.username = username as string;
+                this.LoadFriendsListAsync();
+                this.LoadFriendsAsync();
+            }
+        }
+
         private async void HandleAddFriendCommand(object parameter)
         {
             if (string.IsNullOrWhiteSpace(this.FriendName))
