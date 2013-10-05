@@ -1,7 +1,7 @@
 ﻿<common:LayoutAwarePage
     x:Name="pageRoot"
     x:Class="FreeJustBelot.Pages.GamePage"
-    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    DataContext="{Binding GameVM,Source={StaticResource AppVM}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FreeJustBelot.Pages"
@@ -28,9 +28,9 @@
                 <Run Text="{Binding GameName}"/>
             </TextBlock>
         </Grid>
-        
+
         <!--Card 120x150-->
-        
+
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100"/>
@@ -42,7 +42,20 @@
                 <ColumnDefinition Width="1166"/>
                 <ColumnDefinition Width="100"/>
             </Grid.ColumnDefinitions>
+
+            <ListView Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Cards}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image Source="{Binding}" Width="120" Height="150"/>
+                            <TextBlock Text="{Binding}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             
+            <Button Grid.Column="0" Grid.Row="0" Click="Button_Click">Click</Button>
+
             <!--Hand Field-->
             <Grid Grid.Column="1" Grid.Row="1">
                 <Grid.RowDefinitions>

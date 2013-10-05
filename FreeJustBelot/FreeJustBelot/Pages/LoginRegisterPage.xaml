@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     DataContext="{Binding LoginVM, Source={StaticResource AppVM}}"
     mc:Ignorable="d">
-    <Grid Style="{StaticResource LayoutRootStyle}">
+    <Grid Style="{StaticResource LayoutRootStyle}" Name="LoginScreenPanel">
     	<Grid.Background>
     		<ImageBrush ImageSource="ms-appx:///Assets/background1.jpg"/>
     	</Grid.Background>
@@ -28,7 +28,7 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{Binding PageTitle}" FontWeight="Medium" Style="{StaticResource PageHeaderTextStyle}" />
         </Grid>
 
-        <StackPanel Name="MainLoginPanel" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"  Name="MainLoginPanel">
             <StackPanel.Resources>
                 <Style TargetType="TextBlock">
                     <Setter Property="VerticalAlignment" Value="Center" />
@@ -81,9 +81,8 @@
                 <HyperlinkButton Grid.Row="3" Grid.Column="1" 
                              Command="{Binding ShowRegisterForm}"
                             Content="Register" />
-                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Foreground="Red"
-                           Visibility="{Binding IsValidData,Converter={StaticResource boolToVisibilityConverter}}">
-                    Invalid username or password.</TextBlock>
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Foreground="Red" Text="{Binding LoginErrorMessage}" FontSize="15"
+                           Visibility="{Binding IsValidData,Converter={StaticResource boolToVisibilityConverter}}"></TextBlock>
             </Grid>
 
             <Grid Name="RegisterPanel" Visibility="{Binding IsRegisterVisible,Converter={StaticResource boolToVisibilityConverter}}" Background="#B2000000">
@@ -108,11 +107,13 @@
                              Command="{Binding ShowLoginForm}">Login</HyperlinkButton>
                 <Button Grid.Row="4" Grid.Column="1"  Command="{Binding Register}" Click="LoginClick"
                             Content="Register" />
-                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Foreground="Red"
-                            Visibility="{Binding IsValidData,Converter={StaticResource boolToVisibilityConverter}}">
-                    Invalid username or password.</TextBlock>
+                <TextBlock Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" Foreground="Red"  Text="{Binding RegisterErrorMessage}"      FontSize="15" Visibility="{Binding IsValidData,Converter={StaticResource boolToVisibilityConverter}}"></TextBlock>
             </Grid>
             <ProgressRing Name="ProgressRingItem" Width="50" Height="50" IsActive="True" Visibility="{Binding IsProgressBarVisible,Mode=TwoWay,Converter={StaticResource boolToVisibilityConverter}}" VerticalAlignment="Bottom" Foreground="White"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Name="SnappedLoginPanel" Visibility="Collapsed" VerticalAlignment="Center">
+            <Image Source="ms-appx:///Assets/SplashScreen.scale-100.jpg"></Image>
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>
@@ -125,8 +126,18 @@
                 <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
                 <VisualState x:Name="FullScreenPortrait">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LoginScreenPanel" Storyboard.TargetProperty="Background">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <ImageBrush ImageSource="/Assets/background1.jpg" />
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainLoginPanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedLoginPanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
@@ -134,11 +145,18 @@
                 <!-- The back button and title have different styles when snapped -->
                 <VisualState x:Name="Snapped">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="LoginScreenPanel" Storyboard.TargetProperty="Background">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="White"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="MainLoginPanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="SnappedLoginPanel" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
