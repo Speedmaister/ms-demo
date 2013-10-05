@@ -134,6 +134,9 @@
     <Compile Include="Pages\LoginRegisterPage.xaml.cs">
       <DependentUpon>LoginRegisterPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\SearchForPeople.xaml.cs">
+      <DependentUpon>SearchForPeople.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\WaitForGameToStart.xaml.cs">
       <DependentUpon>WaitForGameToStart.xaml</DependentUpon>
     </Compile>
@@ -145,6 +148,7 @@
     <Compile Include="ViewModels\AppViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WaitForGameToStartViewModel.cs" />
   </ItemGroup>
@@ -216,6 +220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\LoginRegisterPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\SearchForPeople.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -23,10 +23,12 @@ namespace FreeJustBelot.ViewModels
             this.navigation = new NavigationService();
             this.LoginVM = new LoginViewModel(this.navigation,this.settings);
             this.HomeVM = new HomeViewModel(this.navigation,this.settings);
+            this.SearchVM = new SearchViewModel(this.settings);
         }
 
         public LoginViewModel LoginVM { get; set; }
         public HomeViewModel HomeVM { get; set; }
+        public SearchViewModel SearchVM { get; set; }
 
         public bool IsLogout()
         {

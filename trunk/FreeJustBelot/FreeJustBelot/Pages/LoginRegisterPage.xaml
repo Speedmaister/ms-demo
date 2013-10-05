@@ -112,7 +112,7 @@
                             Visibility="{Binding IsValidData,Converter={StaticResource boolToVisibilityConverter}}">
                     Invalid username or password.</TextBlock>
             </Grid>
-            <ProgressRing Name="ProgressRingItem" Width="50" Height="50" IsActive="True" Visibility="{Binding IsProgressBarVisible,Mode=TwoWay,Converter={StaticResource boolToVisibilityConverter}}" VerticalAlignment="Bottom"/>
+            <ProgressRing Name="ProgressRingItem" Width="50" Height="50" IsActive="True" Visibility="{Binding IsProgressBarVisible,Mode=TwoWay,Converter={StaticResource boolToVisibilityConverter}}" VerticalAlignment="Bottom" Foreground="White"/>
         </StackPanel>
 
         <VisualStateManager.VisualStateGroups>

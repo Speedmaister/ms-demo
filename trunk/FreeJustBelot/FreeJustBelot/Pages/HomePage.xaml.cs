@@ -27,6 +27,13 @@ namespace FreeJustBelot.Pages
             this.InitializeComponent();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            var context = this.DataContext as HomeViewModel;
+            context.LoadFriends(e.Parameter);
+        }
+
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
